@@ -27,7 +27,7 @@ end
 
 timestamp = Time.now.to_i
 token = SecureRandom.hash
-signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('SHA256'), options[:secret], [timestamp, token].join)
+signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('SHA256'), options[:secret], [timestamp, token].join)
 
 data = { :message => STDIN.read, :timestamp => timestamp, :token => token, :signature => signature }
 headers = {}
